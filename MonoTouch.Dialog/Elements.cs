@@ -1137,7 +1137,7 @@ namespace MonoTouch.Dialog
 		UIPopoverController popover;
 		
 		// Apple leaks this one, so share across all.
-		static UIImagePickerController picker;
+		protected static UIImagePickerController picker;
 		
 		// Height for rows
 		const int dimx = 48;

@@ -1432,6 +1432,7 @@ namespace MonoTouch.Dialog
 		UITextField entry;
 		string placeholder;
 		static UIFont font = UIFont.BoldSystemFontOfSize (17);
+		public int FontSize { get; set; }
 
 		public event EventHandler Changed;
 		public event Func<bool> ShouldReturn;
@@ -1531,6 +1532,8 @@ namespace MonoTouch.Dialog
 			}
 		}
 
+
+
 		UITableViewCell cell;
 		public override UITableViewCell GetCell (UITableView tv)
 		{
@@ -1540,6 +1543,9 @@ namespace MonoTouch.Dialog
 
 			} 
 			cell.TextLabel.Text = Caption;
+
+			if (FontSize > 0)
+				cell.TextLabel.Font = UIFont.BoldSystemFontOfSize(FontSize);
 
 			var offset = (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) ? 20 : 90;
 			cell.Frame = new RectangleF(cell.Frame.X, cell.Frame.Y, tv.Frame.Width-offset, cell.Frame.Height);

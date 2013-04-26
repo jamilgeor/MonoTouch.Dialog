@@ -2091,7 +2091,7 @@ namespace MonoTouch.Dialog
 			element.Parent = this;
 			
 			if (Parent != null)
-				InsertVisual (Elements.Count-1, UITableViewRowAnimation.None, 1);
+				InsertVisual (Elements.Count == 0 ? 0 : Elements.Count-1, UITableViewRowAnimation.None, 1);
 		}
 		
 		/// <summary>

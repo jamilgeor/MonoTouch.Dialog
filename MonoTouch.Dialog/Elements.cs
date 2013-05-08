@@ -1713,6 +1713,7 @@ namespace MonoTouch.Dialog
 	public class DateTimeElement : StringElement {
 		public DateTime DateValue;
 		public UIDatePicker datePicker;
+		public DateTime MinimumDate { get; set; }
 		public event Action<DateTimeElement> DateSelected;
 		public UIColor BackgroundColor = UIColor.Black;
 		
@@ -1769,7 +1770,8 @@ namespace MonoTouch.Dialog
 			var picker = new UIDatePicker (RectangleF.Empty){
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				Mode = UIDatePickerMode.DateAndTime,
-				Date = DateValue
+				Date = DateValue,
+				MinimumDate = MinimumDate
 			};
 			return picker;
 		}

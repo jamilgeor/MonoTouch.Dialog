@@ -1130,6 +1130,8 @@ namespace MonoTouch.Dialog
 	}
 	
 	public class ImageElement : Element {
+		public event EventHandler ValueChanged;
+
 		public UIImage Value;
 		static RectangleF rect = new RectangleF (0, 0, dimx, dimy);
 		static NSString ikey = new NSString ("ImageElement");
@@ -1272,7 +1274,8 @@ namespace MonoTouch.Dialog
 			Value = image;
 			scaled = Scale (image);
 			currentController.DismissModalViewControllerAnimated (true);
-			
+			if (ValueChanged != null)
+				ValueChanged(this, null);
 		}
 		
 		UIViewController currentController;
@@ -1713,7 +1716,8 @@ namespace MonoTouch.Dialog
 	public class DateTimeElement : StringElement {
 		public DateTime DateValue;
 		public UIDatePicker datePicker;
-		public DateTime MinimumDate { get; set; }
+		public DateTime MinimumDate;
+		public DateTime MaximumDate;
 		public event Action<DateTimeElement> DateSelected;
 		public UIColor BackgroundColor = UIColor.Black;
 		
@@ -1771,7 +1775,8 @@ namespace MonoTouch.Dialog
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				Mode = UIDatePickerMode.DateAndTime,
 				Date = DateValue,
-				MinimumDate = MinimumDate
+				MinimumDate = MinimumDate,
+				MaximumDate = MaximumDate
 			};
 			return picker;
 		}
